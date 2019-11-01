@@ -1,0 +1,97 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Reuse Hackathon Project</title>
+</head>
+<style>
+    .mystyle {
+        text-align: center;
+        background-image: url(https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/18157678_740424946138757_6827076913925454011_n.jpg?_nc_cat=102&_nc_oc=AQkU1WRfYVH7BjDIaIfFKS0ZTQsl6XT--5nIVhflqGckLeXuuRH8sDS_1DCBM7aXa_c&_nc_ht=scontent-lga3-1.xx&oh=000782709ab4cbf30fac831b389c050d&oe=5E4E98D3);
+        background-repeat: no-repeat;
+        height: 100%;
+        background-size: cover;
+    }
+
+    h1 {
+        text-shadow: 1px 1px gray;
+    }
+</style>
+
+<body>
+    <div id="oof">
+        <div v-show="ChangeThisThingAlso" class="mystyle">
+            <div style="padding-top: 15%">
+                <h1>Do you like {{this.topic}}?</h1>
+                <button type="button" class="btn btn-primary" style="width:100px; margin:20px"
+                    @click="changeComp(2)">Yes</button>
+                <button @click="changeComp(0)" type="button" class="btn btn-primary"
+                    style="width:100px; margin:20px">No</button>
+            </div>
+        </div>
+        <div v-show="WhyAmIAddingMoreStuffToThisUselessProject" class="mystyle">
+            <div style="padding-top: 15%">
+                <h1>Do you like to read or watch vidoes?</h1>
+                <button type="button" class="btn btn-primary" style="width:100px; margin:20px"
+                    @click="(combine(),goTo(1))">Read</button>
+                <button @click="(combine(),goTo(2))" type="button" class="btn btn-primary"
+                    style="width:100px; margin:20px">Watch</button>
+            </div>
+        </div>
+        <div v-show="ChangeThisBiz" class="mystyle">
+            <div style="padding-top: 15%">
+                <h1>Damn that sucks better luck next time...</h1>
+                <button @click="changeComp(1)" type="button" class="btn btn-primary" style="width:100px; margin:20px">Go
+                    Back</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    var anotherHackathonFuqMe = new Vue({
+        el: '#oof',
+        data() {
+            return {
+                ChangeThisBiz: false,
+                ChangeThisThingAlso: true,
+                WhyAmIAddingMoreStuffToThisUselessProject: false,
+                topic: "'change in data.topic'",
+                youtubeBase: "https://www.youtube.com/results?search_query=",
+                wikiBase: "https://en.wikipedia.org/wiki/",
+                urlVid: "",
+                urlRead: ""
+            }
+        },
+        methods: {
+            goTo(id) {
+                if (id == 1) {
+                    window.location.href = this.urlRead;
+                } else {
+                    window.location.href = this.urlVid;
+                }
+            },
+            combine() {
+                this.urlVid = this.youtubeBase + this.topic;
+                this.urlRead = this.wikiBase + this.topic;
+            },
+            changeComp(id) {
+                if (id == 0) {
+                    this.ChangeThisBiz = true;
+                    this.ChangeThisThingAlso = false;
+                } else if (id == 1) {
+                    this.ChangeThisBiz = false;
+                    this.ChangeThisThingAlso = true;
+                } else {
+                    this.ChangeThisThingAlso = false;
+                    this.WhyAmIAddingMoreStuffToThisUselessProject = true;
+                }
+            },
+        }
+    })
+</script>
+
+</html>
